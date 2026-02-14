@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: "env_name", defaultValue: "dev", description: "Env name")
+        choice(name: "region", choices: ["east-1", "east-2", "east-3"], description: "Select region")
+        booleanParam(name: "confirm_deployment", defaultValue: false, description: "Confirm deployment")
+    }
+
+    environment {
+        myname = "vaishnavi"
+        myage  = "25"
+        myvote = "true"
+    }
+
+    stages {
+        stage('stage-1') {
+            steps {
+                echo "${params.region}"
+                echo "${env.myage}"
+                echo "${env.BUILD_ID}"
+            }
+        }
+    }
+}
